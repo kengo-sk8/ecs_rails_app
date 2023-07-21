@@ -1,0 +1,11 @@
+# pgadmin
+pgadmin/conf
+pgadmin/pgadmin_volume
+
+# postgresql
+postgresql/conf
+postgresql/db_volume
+
+# web(rails)
+web/conf/.env
+
