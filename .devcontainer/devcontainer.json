@@ -13,7 +13,7 @@
 
   // The optional 'workspaceFolder' property is the path VS Code should open by default when
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
@@ -31,7 +31,17 @@
   // "postCreateCommand": "cat /etc/os-release",
 
   // Configure tool-specific properties.
-  // "customizations": {},
+  // コンテナ内で使う拡張機能
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "castwide.solargraph", // solargraph
+        "rebornix.Ruby", // Ruby
+        "misogi.ruby-rubocop", // Rubocop
+        "KoichiSasada.vscode-rdbg" // Ruby Debug
+      ]
+    }
+  }
 
   // Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "devcontainer"

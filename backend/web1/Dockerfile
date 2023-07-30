@@ -18,11 +18,11 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
-RUN mkdir /web
-WORKDIR /web
+RUN mkdir /web1
+WORKDIR /web1
 
-COPY Gemfile /web/
-COPY Gemfile.lock /web/Gemfile.lock
+COPY Gemfile /web1/
+COPY Gemfile.lock /web1/Gemfile.lock
 
 ARG RUBYGEMS_VERSION=3.4.15
 
