@@ -42,3 +42,5 @@ docker system prune -f
 - [NGINX ロードバランス](http://mogile.web.fc2.com/nginx/admin-guide/load-balancer.html)
 - [nginxでロードバランシング＆リバースプロキシの設定](https://qiita.com/mby/items/9ece46893b0967c2296d)
 - [VSCode Devcontainer 放浪記](https://zenn.dev/streamwest1629/articles/vscode_wanderer-in-devcontainer)
+- [Nginxの初期設定](https://rin-ka.net/nginx-init/)
+- [【Puma】Rails 5.2 + Puma + Nginx のデプロイ設定](https://serip39.hatenablog.com/entry/2020/12/23/235700)
