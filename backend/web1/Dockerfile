@@ -1,8 +1,17 @@
-FROM ruby:3.2.2
+ARG RUBY_VERSION=3.3.6
+ARG RUBYGEMS_VERSION=3.5.23
 
-RUN apt-get update && apt-get install -y \
+FROM ruby:${RUBY_VERSION}-slim-bookworm
+
+ENV LANG=C.UTF-8 \ 
+    TZ=Asia/Tokyo \ 
+    RUBY_YJIT_ENABLE=1 \
+    RAILS_ENV=development \ 
+    WEB_APP_ROOT=/web1
+
+RUN apt-get update -qq && apt-get install -y \ 
+    build-essential \ 
     git \
-    vim \
     zip \
     unzip \
     autoconf \
@@ -12,28 +21,26 @@ RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
     vim \
+    bash \
     build-essential \
     nodejs \
     postgresql-client \
+    libpq-dev \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
-RUN mkdir /web1
-WORKDIR /web1
+WORKDIR ${WEB_APP_ROOT}
 
-COPY Gemfile /web1/
-COPY Gemfile.lock /web1/Gemfile.lock
-
-ARG RUBYGEMS_VERSION=3.4.15
-
+COPY Gemfile Gemfile.lock ./
 RUN gem update --system ${RUBYGEMS_VERSION} && \
     bundle install
 
-# Add a script to be executed every time the container starts.
-COPY conf/entrypoint.sh /usr/bin/
+COPY . .
+
+VOLUME ${WEB_APP_ROOT}/tmp
+
+COPY settings/entrypoint.sh /usr/bin/
 RUN chmod 744 /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
 
-# Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

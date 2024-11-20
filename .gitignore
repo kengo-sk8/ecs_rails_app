@@ -1,11 +1,13 @@
 # pgadmin
-pgadmin/conf
+pgadmin/conf/conf.env
 pgadmin/pgadmin_volume
 
 # postgresql
-postgresql/conf
+postgresql/conf.env
 postgresql/db_volume
 
 # web(rails)
-web/conf/.env
+web/config/.postgres_env
 
+# その他
+.DS_Store
